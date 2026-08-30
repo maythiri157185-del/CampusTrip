@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampusTrip — Sign Up</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<div class="app">
+  <div class="topbar">
+    <button class="icon-btn" onclick="window.location.href='index.html'"><i class="fa-solid fa-arrow-left"></i></button>
+    <h1>Sign Up</h1>
+  </div>
+
+  <div class="screen">
+    <div class="brand" style="margin-top:6px;">
+      <div class="brand-mark"><i class="fa-solid fa-graduation-cap"></i></div>
+      <h1 style="font-size:22px;">Create your account</h1>
+      <p>Start planning your next trip.</p>
+    </div>
+
+    <form id="signupForm" novalidate>
+      <div class="field">
+        <span class="fi"><i class="fa-regular fa-user"></i></span>
+        <input type="text" id="signupName" placeholder="Full Name" autocomplete="name" required>
+      </div>
+      <div class="field">
+        <span class="fi"><i class="fa-regular fa-envelope"></i></span>
+        <input type="email" id="signupEmail" placeholder="Email" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <span class="fi"><i class="fa-solid fa-lock"></i></span>
+        <input type="password" id="signupPassword" placeholder="Password (min 6 characters)" autocomplete="new-password" required>
+        <button type="button" class="toggle-visibility" data-target="signupPassword">
+          <i class="fa-regular fa-eye"></i>
+        </button>
+      </div>
+      <div id="signupError" class="field-error hidden"></div>
+
+      <button type="submit" class="btn btn-primary" id="signupBtn">Create Account</button>
+    </form>
+
+    <div class="link-row">
+      Already have an account?
+      <a href="index.html" class="btn-text" style="display:inline;padding:0;">Log In</a>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

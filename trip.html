@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampusTrip — Trip Dashboard</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<div class="app">
+  <div class="topbar">
+    <button class="icon-btn" onclick="window.location.href='home.html'"><i class="fa-solid fa-arrow-left"></i></button>
+    <h1 id="topbarTripName">Trip</h1>
+    <div class="spacer"></div>
+    <button class="icon-btn" id="tripMenuBtn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
+  </div>
+
+  <div class="screen" id="tripScreen">
+    <div class="loading-screen" id="tripLoading"><div class="spinner dark"></div></div>
+
+    <div id="tripContent" class="hidden">
+      <div class="trip-hero">
+        <div class="thumb"></div>
+        <div class="info">
+          <h2 id="tripName">—</h2>
+          <div class="meta-row"><i class="fa-solid fa-location-dot"></i> <span id="tripDestination">—</span></div>
+          <div class="meta-row"><i class="fa-regular fa-calendar"></i> <span id="tripDates">—</span></div>
+          <div class="meta-row"><i class="fa-solid fa-user"></i> <span id="tripOrganizer">—</span></div>
+          <div class="meta-row"><i class="fa-solid fa-users"></i> <span id="tripMemberCount">—</span></div>
+          <div class="trip-code-pill"><i class="fa-solid fa-hashtag"></i> <span id="tripCodeLabel">------</span></div>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="members">Members</button>
+        <button class="tab" data-tab="expenses">Expenses</button>
+        <button class="tab" data-tab="qapoll">Q&amp;A &amp; Poll</button>
+      </div>
+
+      <!-- ================= MEMBERS TAB ================= -->
+      <div class="tab-panel active" id="panel-members">
+        <div id="membersList"><div class="loading-screen"><div class="spinner dark"></div></div></div>
+      </div>
+
+      <!-- ================= EXPENSES TAB ================= -->
+      <div class="tab-panel" id="panel-expenses">
+        <div id="expensesList"><div class="loading-screen"><div class="spinner dark"></div></div></div>
+        <div class="share-card">
+          <div class="label">Your Share</div>
+          <div class="value" id="yourShare">— THB</div>
+        </div>
+        <button class="btn btn-primary" id="addExpenseBtn"><i class="fa-solid fa-plus"></i> Add Expense</button>
+      </div>
+
+      <!-- ================= Q&A & POLL TAB ================= -->
+      <div class="tab-panel" id="panel-qapoll">
+        <div class="section-label" style="margin-top:0;">Questions &amp; Answers</div>
+        <div id="questionsList"><div class="loading-screen"><div class="spinner dark"></div></div></div>
+        <button class="btn btn-outline" id="askQuestionBtn" style="margin-bottom:26px;">
+          <i class="fa-regular fa-message"></i> Ask a Question
+        </button>
+
+        <div class="section-label">Poll</div>
+        <div id="pollArea"><div class="loading-screen"><div class="spinner dark"></div></div></div>
+        <button class="btn btn-outline" id="newPollBtn" style="margin-top:6px;">
+          <i class="fa-solid fa-square-poll-vertical"></i> Create New Poll
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ Add Expense Sheet ============ -->
+  <div class="sheet-backdrop" id="expenseSheetBackdrop">
+    <div class="sheet">
+      <h4>Add Expense</h4>
+      <form id="expenseForm">
+        <div class="field">
+          <span class="fi"><i class="fa-regular fa-file-lines"></i></span>
+          <input type="text" id="expenseTitle" placeholder="Expense title (e.g. Hotel)" required>
+        </div>
+        <div class="field">
+          <span class="fi"><i class="fa-solid fa-tags"></i></span>
+          <select id="expenseCategory">
+            <option value="hotel">Hotel</option>
+            <option value="fuel">Fuel / Transport</option>
+            <option value="food">Groceries / Food</option>
+            <option value="activities">Activities</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <span class="fi"><i class="fa-solid fa-coins"></i></span>
+          <input type="number" id="expenseAmount" placeholder="Amount (THB)" min="0" step="0.01" required>
+        </div>
+        <button type="submit" class="btn btn-primary" id="saveExpenseBtn">Save Expense</button>
+        <button type="button" class="btn btn-text" style="width:100%;margin-top:4px;" id="cancelExpenseBtn">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ Ask Question Sheet ============ -->
+  <div class="sheet-backdrop" id="questionSheetBackdrop">
+    <div class="sheet">
+      <h4>Ask a Question</h4>
+      <form id="questionForm">
+        <div class="field" style="align-items:flex-start;">
+          <span class="fi" style="margin-top:3px;"><i class="fa-regular fa-message"></i></span>
+          <textarea id="questionText" rows="3" placeholder="e.g. Where should we meet?" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" id="saveQuestionBtn">Post Question</button>
+        <button type="button" class="btn btn-text" style="width:100%;margin-top:4px;" id="cancelQuestionBtn">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ New Poll Sheet ============ -->
+  <div class="sheet-backdrop" id="pollSheetBackdrop">
+    <div class="sheet">
+      <h4>Create a Poll</h4>
+      <form id="pollForm">
+        <div class="field">
+          <span class="fi"><i class="fa-solid fa-circle-question"></i></span>
+          <input type="text" id="pollQuestion" placeholder="Poll question" required>
+        </div>
+        <div id="pollOptionsWrap">
+          <div class="field"><span class="fi"><i class="fa-solid fa-circle-dot"></i></span><input type="text" class="pollOptionInput" placeholder="Option 1" required></div>
+          <div class="field"><span class="fi"><i class="fa-solid fa-circle-dot"></i></span><input type="text" class="pollOptionInput" placeholder="Option 2" required></div>
+        </div>
+        <button type="button" class="btn-text" id="addPollOptionBtn" style="margin-bottom:14px;">+ Add another option</button>
+        <button type="submit" class="btn btn-primary" id="savePollBtn">Create Poll</button>
+        <button type="button" class="btn btn-text" style="width:100%;margin-top:4px;" id="cancelPollBtn">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ Trip Menu Sheet ============ -->
+  <div class="sheet-backdrop" id="menuSheetBackdrop">
+    <div class="sheet">
+      <h4>Trip Options</h4>
+      <button class="sheet-option" id="shareCodeOption">
+        <span class="fi"><i class="fa-solid fa-share-nodes"></i></span> Share Trip Code
+      </button>
+      <button class="sheet-option" id="leaveTripOption" style="color:#e5484d;">
+        <span class="fi" style="color:#e5484d;"><i class="fa-solid fa-arrow-right-from-bracket"></i></span> Leave Trip
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/trip.js"></script>
+</body>
+</html>

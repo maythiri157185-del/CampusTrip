@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampusTrip — Log In</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<div class="app">
+  <div class="screen centered" id="loginScreen">
+    <div class="brand">
+      <div class="brand-mark"><i class="fa-solid fa-graduation-cap"></i></div>
+      <h1>CampusTrip</h1>
+      <p>Plan trips with your friends, together.</p>
+    </div>
+
+    <form id="loginForm" novalidate>
+      <div class="field">
+        <span class="fi"><i class="fa-regular fa-envelope"></i></span>
+        <input type="email" id="loginEmail" placeholder="Email" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <span class="fi"><i class="fa-solid fa-lock"></i></span>
+        <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password" required>
+        <button type="button" class="toggle-visibility" data-target="loginPassword">
+          <i class="fa-regular fa-eye"></i>
+        </button>
+      </div>
+      <div id="loginError" class="field-error hidden"></div>
+
+      <button type="submit" class="btn btn-primary" id="loginBtn">Log In</button>
+    </form>
+
+    <div class="link-row">
+      Don't have an account?
+      <a href="signup.html" class="btn-text" style="display:inline;padding:0;">Sign Up</a>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

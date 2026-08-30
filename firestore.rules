@@ -1,0 +1,81 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isMember(tripId) {
+      return isSignedIn() &&
+        request.auth.uid in get(/databases/$(database)/documents/trips/$(tripId)).data.memberIds;
+    }
+
+    function isOrganizerOf(tripId) {
+      return isSignedIn() &&
+        get(/databases/$(database)/documents/trips/$(tripId)).data.organizerId == request.auth.uid;
+    }
+
+    // ---------- users ----------
+    match /users/{userId} {
+      allow read: if isSignedIn();
+      allow create, update: if isSignedIn() && request.auth.uid == userId;
+      allow delete: if false;
+    }
+
+    // ---------- trip code lookup (for Join Trip) ----------
+    match /tripCodes/{code} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn();
+      allow update: if false;
+      allow delete: if isOrganizerOf(resource.data.tripId);
+    }
+
+    // ---------- trips ----------
+    match /trips/{tripId} {
+      allow read: if isMember(tripId);
+      allow create: if isSignedIn() &&
+        request.resource.data.organizerId == request.auth.uid &&
+        request.resource.data.memberIds.hasOnly([request.auth.uid]);
+      // Members may update (e.g. join = arrayUnion self, leave = arrayRemove self);
+      // full field edits restricted to the organizer in app logic.
+      allow update: if isMember(tripId);
+      allow delete: if isOrganizerOf(tripId);
+
+      // ---------- members subcollection ----------
+      match /members/{memberId} {
+        allow read: if isMember(tripId);
+        allow create: if isSignedIn() && request.auth.uid == memberId;
+        allow delete: if isSignedIn() &&
+          (request.auth.uid == memberId || isOrganizerOf(tripId));
+        allow update: if false;
+      }
+
+      // ---------- expenses subcollection ----------
+      match /expenses/{expenseId} {
+        allow read: if isMember(tripId);
+        allow create: if isMember(tripId) && request.resource.data.paidBy == request.auth.uid;
+        allow update, delete: if isSignedIn() &&
+          (resource.data.paidBy == request.auth.uid || isOrganizerOf(tripId));
+      }
+
+      // ---------- questions subcollection ----------
+      match /questions/{questionId} {
+        allow read: if isMember(tripId);
+        allow create: if isMember(tripId) && request.resource.data.askedBy == request.auth.uid;
+        allow update: if isMember(tripId); // any member may answer
+        allow delete: if isSignedIn() &&
+          (resource.data.askedBy == request.auth.uid || isOrganizerOf(tripId));
+      }
+
+      // ---------- polls subcollection ----------
+      match /polls/{pollId} {
+        allow read: if isMember(tripId);
+        allow create: if isMember(tripId) && request.resource.data.createdBy == request.auth.uid;
+        allow update: if isMember(tripId); // voting updates options/voters
+        allow delete: if isOrganizerOf(tripId);
+      }
+    }
+  }
+}
