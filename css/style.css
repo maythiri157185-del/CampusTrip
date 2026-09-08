@@ -113,6 +113,7 @@ a { color: inherit; text-decoration: none; }
 
 button { font-family: inherit; cursor: pointer; }
 
+
 /* ---------- Screen body ---------- */
 .screen {
   flex: 1;
@@ -940,3 +941,89 @@ button { font-family: inherit; cursor: pointer; }
 .landing-footer { max-width:1200px; margin:0 auto; padding:20px clamp(20px,4vw,48px) 28px; display:flex; justify-content:space-between; gap:15px; color:var(--text-muted); font-size:12px; }
 @media (max-width:900px) { .landing-nav-actions a:not(.nav-login):not(.nav-signup), .landing-nav-actions .nav-login { display:none; } .landing-hero { grid-template-columns:1fr; padding-top:45px; gap:42px; } .hero-copy { max-width:none; text-align:center; margin:auto; } .hero-copy > p { margin:auto; } .hero-actions, .hero-trust { justify-content:center; } .feature-grid { grid-template-columns:repeat(2,1fr); } .steps-grid { grid-template-columns:1fr; } .cta-section { margin-left:20px; margin-right:20px; border-radius:22px; } }
 @media (max-width:600px) { .landing-nav { padding:15px 18px; } .landing-brand { font-size:18px; } .landing-brand img { width:36px; height:36px; } .nav-signup { padding:9px 13px !important; font-size:12px; } .landing-hero { padding:38px 18px 65px; } .hero-copy h1 { font-size:42px; letter-spacing:-1.2px; } .hero-copy > p { font-size:15px; } .hero-actions { flex-direction:column; } .hero-actions .btn { width:100%; } .hero-trust { gap:10px; font-size:11px; } .preview-content { padding:15px; } .preview-welcome { padding:18px; } .preview-welcome h3 { font-size:20px; } .preview-grid { gap:8px; } .preview-card { min-height:105px; padding:14px; } .feature-section, .how-section { padding:65px 18px; } .feature-grid { grid-template-columns:1fr; } .section-heading { margin-bottom:30px; } .section-heading h2 { font-size:30px; } .cta-section { margin:10px 18px 0; padding:34px 22px; flex-direction:column; align-items:flex-start; } .cta-section .btn-light { width:100%; justify-content:center; } .landing-footer { padding:20px 18px 28px; flex-direction:column; } }
+
+/* ============================================================
+   CampusTrip — Full-screen mobile app shell correction
+   Removes the outer/double rounded frame and makes the app
+   fill the viewport like the approved design.
+   ============================================================ */
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #ddf5ff;
+}
+
+body {
+  min-width: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+.app {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+  background: #ddf5ff;
+}
+
+.topbar {
+  border-radius: 0;
+}
+
+.screen {
+  background: #ddf5ff;
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  padding: 28px 18px 100px;
+}
+
+.trip-card {
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px -14px rgba(16, 30, 77, 0.18);
+  padding: 20px;
+}
+
+.fab {
+  right: 22px;
+  bottom: 86px;
+}
+
+@media (max-width: 600px) {
+  html,
+  body {
+    padding: 0;
+    margin: 0;
+  }
+
+  .app {
+    width: 100%;
+    min-height: 100dvh;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .screen {
+    padding: 28px 18px 100px;
+    border-radius: 0;
+  }
+
+  .trip-card {
+    border: none;
+    box-shadow: 0 10px 30px -14px rgba(16, 30, 77, 0.18);
+  }
+}
