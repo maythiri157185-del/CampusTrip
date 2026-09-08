@@ -58,7 +58,6 @@ button { font-family: inherit; cursor: pointer; }
   max-width: 100%;
   min-height: 100%;
   background: var(--card);
-  border-radius: 28px;
   box-shadow: var(--shadow-pop);
   overflow: hidden;
   display: flex;
@@ -881,85 +880,6 @@ button { font-family: inherit; cursor: pointer; }
 
 .code-display .label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
 .code-display .code { font-size: 26px; font-weight: 800; color: var(--navy-800); letter-spacing: 4px; font-family: var(--font-display); }
-
-/* =========================================================
-   SMALL PHONES
-   ========================================================= */
-
-@media (max-width: 430px) {
-
-    body {
-        background: #dff5ff;
-    }
-
-    .app {
-        max-width: none;
-        width: 100%;
-    }
-
-    .screen.centered {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-}
-
-
-/* =========================================================
-   VERY SMALL PHONES
-   ========================================================= */
-
-@media (max-width: 360px) {
-
-    .topbar {
-        height: 70px;
-        min-height: 70px;
-        padding: 0 16px;
-    }
-
-    .screen.centered {
-        padding: 32px 18px 24px;
-    }
-
-    .brand-logo {
-        width: 85px;
-        height: 85px;
-    }
-
-    .brand h1 {
-        font-size: 20px !important;
-    }
-
-    .brand p {
-        margin-bottom: 24px;
-    }
-
-    #signupForm .field,
-    #signupForm .field input {
-        height: 48px;
-        min-height: 48px;
-    }
-
-    #signupBtn {
-        height: 48px;
-    }
-
-    .bottom-bar {
-        height: 55px;
-        min-height: 55px;
-    }
-}
-
-
-/* =========================================================
-   DESKTOP — PHONE PREVIEW
-   ========================================================= */
-
-@media (min-width: 431px) {
-
-    .app {
-        box-shadow: 0 0 35px rgba(0, 0, 0, 0.12);
-    }
-}
 
 /* ============================================================
    CampusTrip public introduction / landing page
