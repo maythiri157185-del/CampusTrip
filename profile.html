@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#022e6b">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+
+  <title>CampusTrip — Profile</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  .profile-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 30px 20px 10px;
+  }
+  .profile-avatar {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy-800), var(--navy-600));
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 26px;
+    margin-bottom: 14px;
+  }
+  .profile-hero h2 { margin: 0 0 4px; font-family: var(--font-display); font-size: 19px; color: var(--navy-800); }
+  .profile-hero p { margin: 0; color: var(--text-muted); font-size: 13.5px; }
+  .profile-nav {
+    display: flex;
+    border-bottom: 1.5px solid var(--border);
+    margin: 24px 0 18px;
+  }
+  .profile-nav a, .profile-nav span {
+    flex: 1;
+    text-align: center;
+    padding: 10px 4px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+  .profile-nav .current {
+    color: var(--navy-800);
+    border-bottom: 2.5px solid var(--orange);
+    margin-bottom: -1.5px;
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="topbar">
+    <button class="icon-btn" onclick="window.location.href='home.html'"><i class="fa-solid fa-arrow-left"></i></button>
+    <h1 style="margin-left:10px;">Profile</h1>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="screen" id="profileScreen">
+    <div class="loading-screen" id="profileLoading"><div class="spinner dark"></div></div>
+
+    <div id="profileContent" class="hidden">
+      <div class="profile-hero">
+        <div class="profile-avatar" id="profileAvatar">?</div>
+        <h2 id="profileName">—</h2>
+        <p id="profileEmail">—</p>
+      </div>
+
+      <div class="section-label">Your details</div>
+      <form id="profileForm">
+        <div class="field">
+          <span class="fi"><i class="fa-regular fa-user"></i></span>
+          <input type="text" id="profileNameInput" placeholder="Full name" required>
+        </div>
+        <div class="field">
+          <span class="fi"><i class="fa-regular fa-envelope"></i></span>
+          <input type="email" id="profileEmailInput" disabled>
+        </div>
+        <button type="submit" class="btn btn-primary" id="saveProfileBtn">Save Changes</button>
+      </form>
+
+      <div class="section-label">Account</div>
+      <button class="btn btn-outline" id="myTripsBtn" style="margin-bottom:12px;">
+        <i class="fa-solid fa-map"></i> My Trips
+      </button>
+      <button class="btn btn-outline" id="logoutProfileBtn" style="color:#e5484d;border-color:#e5484d;">
+        <i class="fa-solid fa-right-from-bracket"></i> Log Out
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/profile.js"></script>
+<script src="js/pwa.js"></script>
+</body>
+</html>

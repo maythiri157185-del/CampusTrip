@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#022e6b">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+
+  <title>CampusTrip — New Trip</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<div class="app">
+  <div class="topbar">
+    <button class="icon-btn" onclick="window.location.href='home.html'"><i class="fa-solid fa-arrow-left"></i></button>
+    <h1>New Trip</h1>
+  </div>
+
+  <div class="screen">
+    <form id="createTripForm" novalidate>
+      <div class="field">
+        <span class="fi"><i class="fa-solid fa-briefcase"></i></span>
+        <input type="text" id="tripName" placeholder="Trip Name" required>
+      </div>
+      <div class="field">
+        <span class="fi"><i class="fa-solid fa-location-dot"></i></span>
+        <input type="text" id="tripDestination" placeholder="Destination" required>
+      </div>
+      <div class="field">
+        <span class="fi"><i class="fa-regular fa-calendar"></i></span>
+        <input type="text" id="tripDates" placeholder="Travel Dates (e.g. 20 – 22 Sep)" required>
+      </div>
+      <div class="field" style="align-items:flex-start;">
+        <span class="fi" style="margin-top:3px;"><i class="fa-regular fa-file-lines"></i></span>
+        <textarea id="tripDescription" rows="3" placeholder="Description (optional)"></textarea>
+      </div>
+
+      <div id="createTripError" class="field-error hidden"></div>
+
+      <button type="submit" class="btn btn-primary" id="createTripBtn">Create Trip</button>
+    </form>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+
+<script src="js/firebase-config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/create-trip.js"></script>
+
+<script src="js/pwa.js"></script>
+</body>
+</html>

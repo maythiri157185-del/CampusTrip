@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#022e6b">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+
+  <title>CampusTrip — My Trips</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<div class="app">
+  <div class="topbar">
+    <img class="icon-btn" id="menuBtn" src="assets/logo.png" alt="Menu">
+    <h1>My Trips</h1>
+    <div class="spacer"></div>
+    <button class="icon-btn" id="logoutBtn" title="Log out">
+      <i class="fa-solid fa-right-from-bracket"></i>
+    </button>
+  </div>
+
+  <div class="screen">
+    <div class="section-label">Your Trips</div>
+    <div id="tripsList">
+      <div class="loading-screen">
+        <div class="spinner dark"></div>
+      </div>
+    </div>
+  </div>
+
+  <button class="fab" id="fabBtn"><i class="fa-solid fa-plus"></i></button>
+
+  <div class="sheet-backdrop" id="sheetBackdrop">
+    <div class="sheet">
+      <h4>What would you like to do?</h4>
+      <button class="sheet-option" onclick="window.location.href='create-trip.html'">
+        <span class="fi"><i class="fa-solid fa-plus"></i></span> Create Trip
+      </button>
+      <button class="sheet-option" onclick="window.location.href='join-trip.html'">
+        <span class="fi"><i class="fa-solid fa-users"></i></span> Join Trip
+      </button>
+    </div>
+  </div>
+
+  <div class="sheet-backdrop" id="menuSheetBackdrop">
+    <div class="sheet">
+      <h4>Menu</h4>
+      <button class="sheet-option" onclick="window.location.href='home.html'">
+        <span class="fi"><i class="fa-solid fa-map"></i></span> My Trips
+      </button>
+      <button class="sheet-option" onclick="window.location.href='profile.html'">
+        <span class="fi"><i class="fa-regular fa-user"></i></span> Profile
+      </button>
+      <button class="sheet-option" id="logoutMenuOption" style="color:#e5484d;">
+        <span class="fi" style="color:#e5484d;"><i class="fa-solid fa-right-from-bracket"></i></span> Log Out
+      </button>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/home.js"></script>
+<script src="js/pwa.js"></script>
+</body>
+</html>
